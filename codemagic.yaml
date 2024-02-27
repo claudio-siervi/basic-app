@@ -1,15 +1,24 @@
 workflows:
   my-workflow:
     name: Basic Flutter Workflow (develop)
+
     environment:
       vars:
         # Read Codemagic' environment variables
-        API_KEY: $API_KEY
+        KEY_PASSWORD: $KEY_PASSWORD
+        KEY_ALIAS: $KEY_ALIAS
         SECRET_TOKEN: $SECRET_TOKEN
+        OPEN_KEY: $OPEN_KEY
+
     scripts:
-      - name: Show Environment Variables Values
+      - name: Show Private Environment Variables
         script: |
-          echo "API Key: $API_KEY"
-          echo "Secret Token: $SECRET_TOKEN"
           echo "Codemagic Mac Mini envVars"
-          echo printenv
+          echo "API Key: $KEY_PASSWORD"
+          echo "Key Store PW: $KEYSTORE_PASSWORD"
+          echo "Key Alias: $KEY_ALIAS"
+          echo "$printenv"
+      - name: Show Non-Private Environment Variables
+        script: |
+          echo "Open Key: $OPEN_KEY"
+          printenv > a.test | cat a.test
