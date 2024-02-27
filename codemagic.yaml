@@ -21,4 +21,4 @@ workflows:
       - name: Show Non-Private Environment Variables
         script: |
           echo "Open Key: $OPEN_KEY"
-          printenv > a.test | cat a.test
+          echo $printenv
