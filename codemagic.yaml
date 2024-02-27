@@ -1,0 +1,15 @@
+workflows:
+  my-workflow:
+    name: Basic Flutter Workflow (develop)
+    environment:
+      vars:
+        # Read Codemagic' environment variables
+        API_KEY: $API_KEY
+        SECRET_TOKEN: $SECRET_TOKEN
+    scripts:
+      - name: Show Environment Variables Values
+        script: |
+          echo "API Key: $API_KEY"
+          echo "Secret Token: $SECRET_TOKEN"
+          echo "Codemagic Mac Mini envVars"
+          echo printenv

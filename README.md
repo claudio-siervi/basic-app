@@ -1,6 +1,9 @@
-# basic_app
+# Flutter basic_app
 
 A new Flutter project.
+
+Codemagic Pipeline Status
+[![Codemagic build status](https://api.codemagic.io/apps/65d38dd96d2eb04fe0a31c4a/65d3906df0109eb5ffd88168/status_badge.svg)](https://codemagic.io/apps/65d38dd96d2eb04fe0a31c4a/65d3906df0109eb5ffd88168/latest_build)
 
 ## Getting Started
 
