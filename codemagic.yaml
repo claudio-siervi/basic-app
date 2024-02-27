@@ -9,6 +9,7 @@ workflows:
         KEY_ALIAS: $KEY_ALIAS
         SECRET_TOKEN: $SECRET_TOKEN
         OPEN_KEY: $OPEN_KEY
+        GCLOUD_SERVICE_ACCOUNT_CREDENTIALS: Encrypted(HKJGfjhg234jhg234==)
 
     scripts:
       - name: Show Private Environment Variables
@@ -21,4 +22,6 @@ workflows:
       - name: Show Non-Private Environment Variables
         script: |
           echo "Open Key: $OPEN_KEY"
+          echo $OPEN_KEY
+          echo $GCLOUD_SERVICE_ACCOUNT_CREDENTIALS
           echo $printenv
