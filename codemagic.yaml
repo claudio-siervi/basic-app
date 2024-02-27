@@ -1,5 +1,60 @@
 workflows:
-  my-workflow:
+  # Development Workflow
+  dev-workflow:
+    name: Development Workflow
+
+    environment:
+      vars:
+        SECRET_TOKEN: $SECRET_TOKEN
+        OPEN_KEY: $OPEN_KEY
+        GCLOUD_SERVICE_ACCOUNT_CREDENTIALS: Encrypted(HKJGfjhg234jhg234==)
+
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: develop
+          include: true
+          source: true
+
+    scripts:
+      - name: Build and test for development
+        script: |
+          # Build and test commands
+          flutter build apk --debug
+
+    artifacts:
+      - build/**/outputs/**/*.apk
+
+
+  # Production Workflow
+  prod-workflow:
+    name: Production Workflow
+
+    environment:
+      vars:
+        SECRET_TOKEN: $SECRET_TOKEN
+        OPEN_KEY: $OPEN_KEY
+
+    triggering:
+      events:
+        - push
+      branch_patterns:
+        - pattern: main
+          include: true
+          source: true
+
+    scripts:
+      - name: Build and release for production
+        script: |
+          # Build and release commands
+          flutter build appbundle --release
+
+    artifacts:
+      - build/**/outputs/**/*.aab
+
+
+  basic-flutter-workflow:
     name: Basic Flutter Workflow (develop)
 
     environment:
