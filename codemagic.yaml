@@ -21,13 +21,14 @@ workflows:
           flutter build apk --debug
     artifacts:
       - build/**/outputs/**/*.apk
-#    publishing:
-#      email:
-#        recipients:
-#          - claudio.junior@bairesdev.com
-#        notify_on_build_start: true
-#        notify_on_build_success: true
-#        notify_on_build_failure: true
+    publishing:
+      email:
+        recipients:
+          - claudio.junior@bairesdev.com
+        notify:
+          success: true # To not receive a notification when a build succeeds
+          failure: false # To not receive a notification when a build fails
+
 
   # Production Workflow
   prod-workflow:
