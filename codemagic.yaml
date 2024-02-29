@@ -2,40 +2,50 @@ workflows:
   # Development Workflow
   dev-workflow:
     name: Development Workflow
-
     environment:
       flutter: 3.19.0
       vars:
         SECRET_TOKEN: $SECRET_TOKEN
         OPEN_KEY: $OPEN_KEY
-
     triggering:
       events:
         - push
+        - pull_request
+        - tag
       branch_patterns:
         - pattern: develop
           include: true
           source: true
-
+        - pattern: mentoring_test
+          include: true
+          source: true
+      tag_patterns:
+        - pattern: release*
+          include: true
     scripts:
-      - name: Build and test for development
+      - name: Build Debug Package for QA Testing
+        script: flutter build apk --debug
+      - name: Read environment Vars
         script: |
-          # Build and test commands
-          flutter build apk --debug
-
+          echo "Testing print variables"
+          echo $OPEN_KEY
     artifacts:
       - build/**/outputs/**/*.apk
-
+    publishing:
+      email:
+        recipients:
+          - claudio.junior@bairesdev.com
+        notify_on_build_start: true
+        notify_on_build_success: true
+        notify_on_build_failure: true
 
   # Production Workflow
   prod-workflow:
     name: Production Workflow
-
     environment:
       vars:
         SECRET_TOKEN: $SECRET_TOKEN
         OPEN_KEY: $OPEN_KEY
-
     triggering:
       events:
         - push
@@ -43,13 +53,10 @@ workflows:
         - pattern: main
           include: true
           source: true
-
     scripts:
       - name: Build and release for production
         script: |
-          # Build and release commands
           flutter build appbundle --release
-
     artifacts:
       - build/**/outputs/**/*.aab
 
