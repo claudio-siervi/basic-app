@@ -11,7 +11,6 @@ workflows:
       events:
         - push
         - pull_request
-        - tag
       branch_patterns:
         - pattern: develop
           include: true
@@ -19,9 +18,6 @@ workflows:
         - pattern: mentoring_test
           include: true
           source: true
-      tag_patterns:
-        - pattern: release*
-          include: true
     scripts:
       - name: Build Debug Package for QA Testing
         script: flutter build apk --debug
