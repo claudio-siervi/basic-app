@@ -15,9 +15,6 @@ workflows:
         - pattern: develop
           include: true
           source: true
-        - pattern: mentoring_test
-          include: true
-          source: true
     scripts:
       - name: Build Debug Package for QA Testing
         script: flutter build apk --debug
