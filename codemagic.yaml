@@ -15,21 +15,19 @@ workflows:
           include: true
           source: true
     scripts:
-      - name: Build Debug Package for QA Testing
-        script: flutter build apk --debug
-      - name: Read environment Vars
+      - name: Build and test for development
         script: |
-          echo "Testing print variables"
-          echo $OPEN_KEY
+          # Build and test commands
+          flutter build apk --debug
     artifacts:
       - build/**/outputs/**/*.apk
-    publishing:
-      email:
-        recipients:
-          - claudio.junior@bairesdev.com
-        notify_on_build_start: true
-        notify_on_build_success: true
-        notify_on_build_failure: true
+#    publishing:
+#      email:
+#        recipients:
+#          - claudio.junior@bairesdev.com
+#        notify_on_build_start: true
+#        notify_on_build_success: true
+#        notify_on_build_failure: true
 
   # Production Workflow
   prod-workflow:
